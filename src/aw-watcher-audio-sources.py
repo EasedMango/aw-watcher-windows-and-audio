@@ -12,12 +12,13 @@ client.create_bucket(bucket_id, event_type="audible-sources")
 with client:
     sleeptime = config['sleep-time']
     pulsetime = config['pulse-time']
+    commitinterval = config['commit-interval']
     while True:
         sources = AudioInfo.get_audible_audio_sources()
         now = datetime.now(timezone.utc)
         data = {'sources': [source['name'] for source in sources]}
         heartbeat_event = Event(timestamp=now,data=data)
-        client.heartbeat(bucket_id, heartbeat_event,pulsetime=pulsetime,queued=True,commit_interval=4.0)
+        client.heartbeat(bucket_id, heartbeat_event,pulsetime,True,commitinterval)
         sleep(sleeptime)
         
         

@@ -24,6 +24,8 @@ testing = false
 sleep-time = 0.5 
 # event merge time
 pulse-time = 2.0 
+# override commit interval
+commit-interval = 4.0
 """)
         
         # Try to load the configuration file
